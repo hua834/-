@@ -38,7 +38,7 @@ import {
 } from 'recharts';
 
 const App: React.FC = () => {
-  const [mode, setMode] = useState<IdentificationMode>(IdentificationMode.FULL_CHEM);
+  const [mode, setMode] = useState<IdentificationMode>(IdentificationMode.ENOSE);
   const [inputs, setInputs] = useState<Record<string, number>>(() => {
     const init: Record<string, number> = {};
     CHEM_COLS.forEach(c => init[c.key] = TYPE_CENTROIDS['生当归'][c.key]);
@@ -138,7 +138,7 @@ const App: React.FC = () => {
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-white">当归酒制品智能鉴别与评价系统</h1>
-            <p className="text-sm text-slate-300 font-medium tracking-wide">基于多维指纹图谱映射与机器学习深度解析</p>
+            <p className="text-sm text-slate-300 font-medium tracking-wide">本系统用于自动鉴定当归酒制品的加工类型及质量优劣，提供直观的数字化判别结论</p>
           </div>
         </div>
         <div className="hidden lg:flex items-center gap-8 text-sm">
@@ -169,14 +169,14 @@ const App: React.FC = () => {
             <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
               <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
                 <CpuChipIcon className="w-5 h-5 text-indigo-500" />
-                算法工作流选择
+                鉴别方法选择
               </h2>
             </div>
             <div className="p-4 space-y-2">
               {[
-                { id: IdentificationMode.FULL_CHEM, label: '多维理化指标全映射', icon: FingerPrintIcon, desc: 'HPLC/GC 组分协同回归分析' },
-                { id: IdentificationMode.Q_MARKER, label: 'Q-Marker 特征筛选', icon: LightBulbIcon, desc: '关键质量标志物快速定位' },
-                { id: IdentificationMode.ENOSE, label: '电子鼻挥发性指纹 (PEN3)', icon: CommandLineIcon, desc: 'Airsense 传感器阵列模式识别' }
+                { id: IdentificationMode.ENOSE, label: '电子鼻嗅觉指纹图谱分析系统（PEN3）', icon: CommandLineIcon, desc: 'Airsense 传感器阵列模式识别' },
+                { id: IdentificationMode.Q_MARKER, label: '核心质控指标', icon: LightBulbIcon, desc: '关键质量评价成分精准定位' },
+                { id: IdentificationMode.FULL_CHEM, label: '多维理化指标全映射', icon: FingerPrintIcon, desc: 'HPLC/GC 组分协同回归分析' }
               ].map(m => (
                 <button
                   key={m.id}
@@ -290,7 +290,7 @@ const App: React.FC = () => {
                 <div className="space-y-3 animate-in fade-in duration-1000">
                   <div className="flex gap-2">
                     <span className="text-slate-500">[SYSTEM]</span>
-                    <span className="text-emerald-400">检测到 {mode === IdentificationMode.ENOSE ? 'Airsense PEN3 气味阵列' : '理化指纹图谱'} 输入流。</span>
+                    <span className="text-emerald-400">检测到 {mode === IdentificationMode.ENOSE ? '气味指纹图谱' : '理化指纹图谱'} 输入流。</span>
                   </div>
                   {mode === IdentificationMode.ENOSE && (
                     <>
@@ -352,7 +352,7 @@ const App: React.FC = () => {
                 <GlobeAltIcon className="w-16 h-16 opacity-20" />
               </div>
               <h3 className="text-xl font-bold text-slate-500">等待数据源载入</h3>
-              <p className="max-w-xs mt-2 text-sm leading-relaxed">系统处于待命状态。请输入实验室录入的理化指标数据或电子鼻信号值。核心引擎将自动执行多变量判别分析。</p>
+              <p className="max-w-xs mt-2 text-sm leading-relaxed">系统处于待命状态。请输入实验室录入的测量指标数据或电子鼻信号值。核心引擎将自动为您分析当归酒制品的加工类别及其综合品质评分。</p>
             </div>
           ) : result ? (
             <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -455,7 +455,7 @@ const App: React.FC = () => {
                   <div className="flex justify-between items-center mb-8">
                     <h4 className="text-sm font-black text-slate-800 uppercase tracking-widest flex items-center gap-2">
                       <div className="w-1 h-5 bg-emerald-500 rounded-full"></div>
-                      特征指纹偏差率解析
+                      测量指标偏差率分析
                     </h4>
                     <span className="text-[10px] font-bold text-slate-400 bg-slate-50 px-2 py-1 rounded">Deviation Map</span>
                   </div>
@@ -501,7 +501,7 @@ const App: React.FC = () => {
                         科研辅助决策与工艺溯源建议
                       </h4>
                       <p className="text-indigo-200/60 text-sm mt-1 italic">
-                        {mode === IdentificationMode.ENOSE ? '基于 PEN3 响应特征的挥发性成分 (VOCs) 深度解析' : '基于多变量统计学分析 (MVA) 的工艺模型映射'}
+                        {mode === IdentificationMode.ENOSE ? '基于 PEN3 响应特征的嗅觉指纹成分深度解析' : '基于多变量统计学分析 (MVA) 的工艺模型映射'}
                       </p>
                     </div>
                   </div>
@@ -543,11 +543,11 @@ const App: React.FC = () => {
                         <div className="bg-white/5 p-5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all hover:scale-[1.02] duration-300">
                           <h5 className="text-amber-400 text-xs font-black uppercase tracking-widest mb-2 flex items-center gap-2">
                             <span className="w-1.5 h-1.5 bg-amber-400 rounded-full"></span>
-                            {mode === IdentificationMode.ENOSE ? '气味指纹成分解析' : 'Q-Marker 关联评估'}
+                            {mode === IdentificationMode.ENOSE ? '气味指纹成分解析' : '核心质控指标关联评估'}
                           </h5>
                           <p className="text-indigo-50 text-xs leading-relaxed">
                             {mode === IdentificationMode.ENOSE ? 
-                              `PEN3 传感器阵列显示 W1W (硫化合物) 与 W2S (醇类) 响应值波动显著。该指纹特征与 ${result.type} 的标准 VOC 轮廓匹配度极高，暗示特征香气成分已达标。` :
+                              `PEN3 传感器阵列显示 W1W (硫化合物) 与 W2S (醇类) 响应值波动显著。该指纹特征与 ${result.type} 的标准嗅觉轮廓匹配度极高，暗示特征香气成分已达标。` :
                               `核心理化指标表现出明显的聚类特征。建议进一步通过 HPLC-Q-TOF/MS 技术验证 ${result.qMarkers[0]} 在炮制过程中的动态阈值，确立标志物的科学依据。`}
                           </p>
                         </div>

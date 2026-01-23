@@ -1,11 +1,11 @@
 import { SampleType } from './types';
 
 export const CHEM_COLS = [
-  { key: 'polysaccharide', label: '多糖含量 (mg/g)', better: true, standardRange: '> 30.0' },
   { key: 'ferulicAcid', label: '阿魏酸含量 (%)', better: true, standardRange: '≥ 0.05' },
+  { key: 'polysaccharide', label: '多糖含量 (MG/G)', better: true, standardRange: '暂未收录' },
   { key: 'totalAsh', label: '总灰分 (%)', better: false, standardRange: '≤ 7.0' },
   { key: 'acidInsolubleAsh', label: '酸不溶性灰分 (%)', better: false, standardRange: '≤ 2.0' },
-  { key: 'volatileOil', label: '挥发油含量 (mL/g)', better: true, standardRange: '≥ 0.4' },
+  { key: 'volatileOil', label: '挥发油含量 (ML/G)', better: true, standardRange: '≥ 0.4' },
   { key: 'moisture', label: '水分 (%)', better: false, standardRange: '≤ 15.0' },
   { key: 'extractContent', label: '浸出物含量 (%)', better: true, standardRange: '≥ 45.0' },
 ];
@@ -39,7 +39,7 @@ export const TYPE_CENTROIDS: Record<SampleType, any> = {
   },
   '酒洗当归': { 
     polysaccharide: 59.78, ferulicAcid: 0.0814, totalAsh: 5.01, acidInsolubleAsh: 0.456, volatileOil: 0.448, moisture: 11.23, extractContent: 47.76,
-    sensor_1: 0.4941, sensor_2: 1.913, sensor_3: 0.526, sensor_4: 1.191, sensor_5: 0.555, sensor_6: 2.121, sensor_7: 8.291, sensor_8: 1.838, sensor_9: 1.018, sensor_10: 1.484
+    sensor_1: 0.4941, sensor_2: 1.913, website: 0.526, sensor_4: 1.191, sensor_5: 0.555, sensor_6: 2.121, sensor_7: 8.291, sensor_8: 1.838, sensor_9: 1.018, sensor_10: 1.484
   },
   '酒炒当归': { 
     polysaccharide: 51.24, ferulicAcid: 0.0901, totalAsh: 4.96, acidInsolubleAsh: 0.442, volatileOil: 0.484, moisture: 7.72, extractContent: 53.64,
