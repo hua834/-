@@ -561,7 +561,7 @@ const App: React.FC = () => {
                         <div className="bg-white/5 p-5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all hover:scale-[1.02] duration-300">
                           <h5 className="text-amber-400 text-xs font-black uppercase tracking-widest mb-2 flex items-center gap-2">
                             <span className="w-1.5 h-1.5 bg-amber-400 rounded-full"></span>
-                            {mode === IdentificationMode.ENOSE ? '气味指纹成分解析' : 'Q-Marker 关联评估'}
+                            {mode === IdentificationMode.ENOSE ? '气味指纹成分解析' : '核心质控指标 关联评估'}
                           </h5>
                           <p className="text-indigo-50 text-xs leading-relaxed">
                             {mode === IdentificationMode.ENOSE ? 
